@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoomController;
 
 Route::get('/', function () {
     return view('guest');
@@ -18,4 +19,5 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', function () {
         return view('index');
     })->name('dashboard');
+    Route::resource('rooms', RoomController::class);
 });

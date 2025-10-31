@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FacilityManagementController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoomController;
@@ -16,8 +18,8 @@ Route::post('/register', [AuthController::class, 'store'])->name('auth.register.
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('dashboard', function () {
-        return view('index');
-    })->name('dashboard');
+    Route::get('/dashboard',[HomeController::class,'index'])->name('dashboard');
     Route::resource('rooms', RoomController::class);
+    Route::resource('rooms', FacilityManagementController::class);
+    Route::resource('rooms', HomeController::class);
 });

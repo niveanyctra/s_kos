@@ -41,29 +41,5 @@
                 </div>
             </div>
         </section>
-
-        <section class="mt-5">
-            <h4 class="h6">Testimoni</h4>
-            <div class="row g-3 mt-2">
-                <div class="col-md-4">
-                    <div class="border rounded p-3">
-                        <strong>Lamin Jamal</strong>
-                        <p class="mb-0 small text-muted">"Kost yang saya pilih bersih dan pemilik ramah. Saran bagus!"</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="border rounded p-3">
-                        <strong>Heri Maguir</strong>
-                        <p class="mb-0 small text-muted">"Dekat kampus, nyaman buat belajar. Harga sesuai fasilitas."</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="border rounded p-3">
-                        <strong>Plorian Wits</strong>
-                        <p class="mb-0 small text-muted">"Proses cepat lewat web, langsung kontak pemilik."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 @endsection

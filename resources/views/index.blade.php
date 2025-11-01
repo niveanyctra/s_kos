@@ -1,111 +1,69 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container-fluid px-4">
-    <h2 class="mt-4 mb-3">Dashboard</h2>
-
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
-
-    <!-- Statistik Utama -->
-    <div class="row">
-        <div class="col-md-4 mb-3">
-            <div class="card text-white bg-primary shadow-sm">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                    <div>
-                        <h5>Total Kamar</h5>
-                        <h3>{{ $rooms ?? 0 }}</h3>
-                    </div>
-                    <i class="fas fa-bed fa-2x"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <div class="card text-white bg-success shadow-sm">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                    <div>
-                        <h5>Fasilitas</h5>
-                        <h3>{{ $facilities ?? 0 }}</h3>
-                    </div>
-                    <i class="fas fa-cogs fa-2x"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <div class="card text-white bg-warning shadow-sm">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                    <div>
-                        <h5>User Aktif</h5>
-                        <h3>{{ $users ?? 0 }}</h3>
-                    </div>
-                    <i class="fas fa-users fa-2x"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Laporan Kamar Berdasarkan Status -->
-    <div class="card shadow-sm mt-4">
-        <div class="card-header">
-            <i class="fas fa-chart-pie me-2"></i> Laporan Kamar Berdasarkan Status
-        </div>
-        <div class="card-body">
+    <header class="bg-primary text-white py-5">
+        <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-6">
-                    <canvas id="roomStatusChart"></canvas>
+                <div class="col-lg-7">
+                    <h1 class="display-5">Cari Kost Nyaman, Dekat Lokasi Favoritmu</h1>
+                    <p class="lead">Foto jelas, fasilitas lengkap, harga transparan. </p>
                 </div>
-                <div class="col-md-6">
-                    <table class="table table-bordered text-center">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Status</th>
-                                <th>Jumlah</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tersedia</td>
-                                <td>{{ $available ?? 0 }}</td>
-                            </tr>
-                            <tr>
-                                <td>Ditempati</td>
-                                <td>{{ $occupied ?? 0 }}</td>
-                            </tr>
-                            <tr>
-                                <td>Perawatan</td>
-                                <td>{{ $maintenance ?? 0 }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+
+                {{-- <div class="col-lg-5 text-center d-none d-lg-block">
+                <img src="https://via.placeholder.com/420x300?text=Ilustrasi+Kost" alt="kost" class="img-fluid rounded">
+            </div> --}}
             </div>
         </div>
-    </div>
+    </header>
 
+    <main class="container my-5">
+        <section class="mb-5 text-center">
+            <h2 class="h4">Kenapa Pilih {{ $setting->name }}?</h2>
+            <p class="text-muted">Mudah mencari, foto & informasi lengkap, serta kontak langsung pemilik.</p>
 
-</div>
+            <div class="row g-3 justify-content-center mt-3">
+                <div class="col-6 col-md-3">
+                    <div class="border rounded p-3">
+                        <h5 class="mb-1">Cepat</h5>
+                        <small class="text-muted">Cari dalam hitungan detik</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="border rounded p-3">
+                        <h5 class="mb-1">Transparan</h5>
+                        <small class="text-muted">Harga & fasilitas jelas</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="border rounded p-3">
+                        <h5 class="mb-1">Aman</h5>
+                        <small class="text-muted">Kontak langsung pemilik</small>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const ctx = document.getElementById('roomStatusChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Tersedia', 'Ditempati', 'Perawatan'],
-            datasets: [{
-                data: [{{ $available ?? 0 }}, {{ $occupied ?? 0 }}, {{ $maintenance ?? 0 }}],
-                backgroundColor: ['#198754', '#0d6efd', '#ffc107']
-            }]
-        },
-        options: {
-            plugins: {
-                legend: { position: 'bottom' }
-            }
-        }
-    });
-</script>
+        <section class="mt-5">
+            <h4 class="h6">Testimoni</h4>
+            <div class="row g-3 mt-2">
+                <div class="col-md-4">
+                    <div class="border rounded p-3">
+                        <strong>Lamin Jamal</strong>
+                        <p class="mb-0 small text-muted">"Kost yang saya pilih bersih dan pemilik ramah. Saran bagus!"</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="border rounded p-3">
+                        <strong>Heri Maguir</strong>
+                        <p class="mb-0 small text-muted">"Dekat kampus, nyaman buat belajar. Harga sesuai fasilitas."</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="border rounded p-3">
+                        <strong>Plorian Wits</strong>
+                        <p class="mb-0 small text-muted">"Proses cepat lewat web, langsung kontak pemilik."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 @endsection
